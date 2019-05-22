@@ -1,4 +1,11 @@
-<h1>タスクリスト</h1>
+<% if logged_in? %>
+
+<h1>id:
+<%= @user.id %>
+:
+<%= @user.name %>
+のタスクリスト</h1>
+
 
 <ul>
 <% @tasks.each do |task| %>  
@@ -14,21 +21,13 @@
 
 <%= link_to '新規タスクの作成', new_task_path %>
 
-<!--<table>-->
-<!--    <tr>-->
-<!--        <th>タスク</th>-->
-<!--    </tr>-->
-    
-<!--<% @tasks.each do |task| %>    -->
-<!--    <tr>-->
-<!--        <tr>-->
-<!--<%= task.content %>-->
-<!--        </tr>-->
-<!--    </tr>-->
-    
-<!--<% end %>-->
-    
-<!--</table>-->
+
+<% else %>
+
+<h1>タスクリスト</h1>
+
+<% end %>
+
 
 
 

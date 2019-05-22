@@ -1,0 +1,19 @@
+<% if logged_in? %>
+
+<%= current_user.name %>
+
+<%= link_to 'Logout', logout_path, method: :delete %>
+
+<% else %>
+
+    <ul>
+            <li>
+<%= link_to 'SignUp', newuser_path %>
+            </li>
+            <li>
+<%= link_to 'Log in',  login_path %>
+            </li>
+    
+    </ul>
+
+<% end %>

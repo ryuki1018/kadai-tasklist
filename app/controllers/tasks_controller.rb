@@ -1,9 +1,12 @@
 class TasksController < ApplicationController
-    
+    include SessionsHelper
     before_action :set_tasks, only: [:show, :edit, :update, :destroy]
     
     def index
-        @tasks = Task.all
+        if logged_in?
+            @user = current_user
+            @tasks = current_user.tasks.order(id: :desc).page(params[:page]).per(5)
+        end
     end
     
     def show
@@ -11,11 +14,11 @@ class TasksController < ApplicationController
     end
     
     def new
-        @task = Task.new
+       @task = current_user.tasks.build
     end
     
     def create
-        @task = Task.new(task_params)
+        @task = current_user.tasks.new(task_params)
         
         if @task.save
             flash[:success] = 'タスクが正常に追加'
@@ -59,5 +62,9 @@ class TasksController < ApplicationController
     
     def set_tasks
         @task = Task.find(params[:id])
+    end
+    
+    def current_user
+    @current_user ||= User.find_by(id: session[:user_id])
     end
 end
