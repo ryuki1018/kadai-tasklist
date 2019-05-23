@@ -1,7 +1,7 @@
 
 <!--サインインページ-->
 
-<h1>サインインページ</h1>
+<h1>サインアップページ</h1>
 <%= form_with(model: @user, local: true) do |f| %>
 
 <%= f.label :name, 'Name' %>
@@ -13,11 +13,11 @@
 <%= f.text_field :email %>
 <%= f.label :password, 'password' %>
 
-<%= f.text_field :password %>
+<%= f.password_field :password %>
 
 <%= f.label :password_confirmation, 'confirmation' %>
 
-<%= f.text_field :password_confirmation %>
+<%= f.password_field :password_confirmation %>
 
 <%= f.submit 'signup'%>
 
